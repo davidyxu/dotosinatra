@@ -1,8 +1,7 @@
 require 'rubygems'
 require 'sinatra'
-
-require 'net/http'  
-require 'net/https'  
+require 'net/http'
+require 'net/https'
 require 'uri'
 require 'json'
 
@@ -11,8 +10,13 @@ get '/' do
 end
 
 post '/results' do
-	result = get_match(params[:match_id])
-	erb :match
+  @match_id = params[:match_id]
+	result = get_match(@match_id)
+  if result.nil?
+    erb :retry_form
+  else
+    erb :match
+  end
 end
 
 
