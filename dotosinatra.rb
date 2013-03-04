@@ -1,6 +1,11 @@
 require 'rubygems'
 require 'sinatra'
 
+require 'net/http'  
+require 'net/https'  
+require 'uri'
+require 'json'
+
 get '/' do
 	erb  :form
 end
