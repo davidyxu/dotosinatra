@@ -1,11 +1,14 @@
 require 'rubygems'
 require 'sinatra'
+require 'sinatra/activerecord'
 require 'net/http'
 require 'net/https'
 require 'uri'
 require 'json'
 
 API_KEY = "AB00D7EDFE31BCDAF028E449069D28D6"
+
+set :database, "sqlite3:///database.sqlite3"
 
 get '/' do
 	erb  :form
@@ -42,4 +45,6 @@ def get_match_details(match_id)
 	data = response.body
 	JSON.parse(data)["result"]
 end
+
+
 
